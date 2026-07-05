@@ -1,0 +1,11 @@
+crewai
+crewai-tools
+praw
+discord.py
+streamlit
+pandas
+schedule
+python-dotenv
+langchain-google-genai
+nest-asyncio
+pyyaml
