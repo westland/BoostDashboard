@@ -1,0 +1,28 @@
+# Virtual Environment
+.venv/
+env/
+venv/
+
+# Environment Variables / Credentials
+.env
+.env.local
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+build/
+dist/
+
+# Local databases
+wow_leads.json
+
+# IDE Settings
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
