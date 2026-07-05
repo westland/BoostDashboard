@@ -1,0 +1,47 @@
+research_task:
+  description: >
+    Search Reddit and Discord for players who might want WoW arena boosting/coaching.
+    Use keywords like: stuck at 1400/1500/1600, need arena help, WTB boost, LF carry, rating push, bad randoms.
+    Focus on recent posts.
+  expected_output: "List of relevant posts/messages with author, content, URL/jump_url, and platform."
+  agent: lead_researcher
+
+analyze_task:
+  description: >
+    For every post/message, extract:
+    - username/author
+    - platform (Reddit/Discord)
+    - current rating (if mentioned)
+    - desired rating/goal
+    - class
+    - pain points
+    - lead_score (1-10)
+    Only keep leads with score >= 6.
+  expected_output: "Structured list of qualified leads."
+  agent: lead_analyzer
+  context:
+    - research_task
+
+generate_task:
+  description: >
+    For each qualified lead, write a short personalized message.
+    
+    **Rate Schedule to reference when relevant:**
+    - Gold: 1700 weapons = 30,000g | 2000 shoulders = 47,000g | Gladiator = 200,000g (+15% G2G handling)
+    - USD Self-Play: 1700 3s/5s = $250 | 2000 3s/5s = $450 | Hourly coaching from $45/hr
+    - USD Pilot: 1700 = $300 | 2000 = $500 | Gladiator = $2,000
+    
+    Make the message feel natural and reference their specific situation + one relevant rate.
+  expected_output: "Personalized outreach message for each lead."
+  agent: message_generator
+  context:
+    - analyze_task
+
+save_task:
+  description: >
+    Deduplicate against existing leads (by URL or username), then save all NEW qualified leads + generated messages to wow_leads.json with timestamp.
+  expected_output: "Confirmation with count of new leads saved."
+  agent: lead_archiver
+  context:
+    - analyze_task
+    - generate_task

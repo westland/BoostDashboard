@@ -1,0 +1,19 @@
+[project]
+name = "wow-boosting-leads"
+version = "1.0.0"
+description = "A CrewAI-based agentic system to monitor and generate WoW boosting/coaching leads."
+dependencies = [
+    "crewai>=0.28.0",
+    "crewai-tools",
+    "praw",
+    "discord.py",
+    "streamlit",
+    "pandas",
+    "schedule",
+    "python-dotenv",
+    "langchain-google-genai",
+]
+
+[build-system]
+requires = ["setuptools>=61.0.0"]
+build-backend = "setuptools.build_meta"
